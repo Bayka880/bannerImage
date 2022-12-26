@@ -28,7 +28,7 @@ const getAllBannerImages = async (req, res, next) => {
   try {
     const file = await SingleFile.find();
     console.log(file);
-    // res.status(200).send(file);
+    res.status(200).send(file);
   } catch (err) {
     res.status(400).json({
       message: err,

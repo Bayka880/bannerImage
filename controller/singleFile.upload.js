@@ -1,4 +1,5 @@
 const SingleFile = require("../model/singleFile.module");
+const SingleImage = require("../model/singleImage.module");
 const fs = require("fs");
 const path = require("path");
 
@@ -23,7 +24,24 @@ const singleFileUpload = async (req, res, next) => {
     });
   }
 };
-
+const imageUpload = async (req, res, next) => {
+  try {
+    let imageUpload = {
+      title: req.body.title,
+      description: req.body.description,
+      link: req.body.link,
+      filePath: req.file.path,
+      endDate: req.body.endDate,
+    };
+    const obj = new SingleImage(imageUpload);
+    await obj.save();
+    res.status(200).send("file uploaded succesfully");
+  } catch (err) {
+    res.status(400).json({
+      message: err,
+    });
+  }
+};
 const getAllBannerImages = async (req, res, next) => {
   try {
     const file = await SingleFile.find();
@@ -36,4 +54,4 @@ const getAllBannerImages = async (req, res, next) => {
   }
 };
 
-module.exports = { singleFileUpload, getAllBannerImages };
+module.exports = { singleFileUpload, getAllBannerImages, imageUpload };

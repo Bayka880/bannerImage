@@ -1,7 +1,7 @@
 const multer = require("multer");
 const bannerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "bannerImage");
+    cb(null, "C:\\Users\\Bayanaa\\Pictures");
   },
   filename: (req, file, cb) => {
     cb(

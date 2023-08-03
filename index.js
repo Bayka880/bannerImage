@@ -11,9 +11,9 @@ const app = express();
 const router = require("./router/router.banner");
 app.use(cors());
 app.use(express.json());
-
-app.use("/bannerImage", express.static(path.join(__dirname, "bannerImage")));
-
+const picture = path.join("C:\\Users\\Bayanaa\\", "Pictures");
+app.use("/banner", express.static(picture));
+console.log(picture);
 app.use("/banner", router);
 mongoose.set("strictQuery", false);
 
